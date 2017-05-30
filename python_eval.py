@@ -48,8 +48,8 @@ elif op == 'QUERY':
     item = {
         'id': 'result',
         'name': result,
-        'icon': 'accessories-calculator',
         'description': description,
+        'icon': 'python.svg',
         'actions': []
     }
 
