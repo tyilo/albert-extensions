@@ -9,6 +9,8 @@ Installation
 git clone https://github.com/Tyilo/albert-extensions ~/.local/share/albert/external
 ```
 
+and then enable "External extensions" in Albert's settings.
+
 List of extensions
 ==
 
