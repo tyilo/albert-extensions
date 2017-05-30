@@ -27,20 +27,29 @@ elif op == 'QUERY':
     if query.startswith(TRIGGER):
         query = query[len(TRIGGER):]
 
-    try:
-        result = eval(query)
-        success = True
-    except Exception as e:
-        result = 'Error: %s' % e
+    query = query.strip()
+
+    if query:
+        try:
+            result = eval(query)
+            success = True
+        except Exception as e:
+            result = e
+            success = False
+        description = type(result).__name__
+    else:
+        result = ''
+        description = 'Type a python expression'
         success = False
 
     result = str(result)
+    description = str(description)
 
     item = {
         'id': 'result',
         'name': result,
-        'description': 'Result',
         'icon': 'accessories-calculator',
+        'description': description,
         'actions': []
     }
 
