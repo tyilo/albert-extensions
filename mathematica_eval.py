@@ -3,6 +3,7 @@ import os
 import json
 import shlex
 import subprocess
+from tempfile import NamedTemporaryFile
 
 TRIGGER = 'mma'
 
@@ -25,7 +26,11 @@ elif op == 'QUERY':
     query = query.strip()
 
     if query:
-        result = str(subprocess.check_output(['wolframscript', '-c', query]).strip(), 'utf-8')
+        with NamedTemporaryFile() as f:
+            f.write(bytes(query, 'utf-8'))
+            f.flush()
+            output = subprocess.check_output(['wolframscript', '-print', '-f', f.name])
+        result = str(output.strip(), 'utf-8')
         success = True
         description = 'Result'
     else:
