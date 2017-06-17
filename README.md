@@ -16,7 +16,7 @@ If the python icon doesn't show up install it:
 
 ```
 mkdir -p ~/.local/share/icons/hicolor/scalable/apps
-cp python.svg ~/.local/share/icons/hicolor/scalable/apps
+cp python.svg ~/.local/share/icons/hicolor/scalable/apps/albert-python-evaluate.svg
 ```
 
 

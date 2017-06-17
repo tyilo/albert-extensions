@@ -49,7 +49,7 @@ elif op == 'QUERY':
         'id': 'result',
         'name': result,
         'description': description,
-        'icon': 'python.svg',
+        'icon': 'albert-python-evaluate.svg',
         'actions': []
     }
 
