@@ -9,7 +9,7 @@ from math import *
 # math.pow doesn't support a 3rd argument
 from builtins import pow
 
-TRIGGER = 'py'
+TRIGGER = 'py '
 
 op = os.environ.get('ALBERT_OP')
 
