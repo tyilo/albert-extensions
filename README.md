@@ -33,3 +33,9 @@ Mathematica eval
 --
 
 Type `mma <mathematica expression>` and see the result of the expression when evaluated in Mathematica using wolframscript. Press enter to copy the result to the clipboard.
+
+
+Pass
+--
+
+Type `pass <name>` to list [pass](https://www.passwordstore.org/) passwords. Press enter to copy the password to the clipboard.
