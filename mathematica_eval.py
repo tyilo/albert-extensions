@@ -5,7 +5,7 @@ import shlex
 import subprocess
 from tempfile import NamedTemporaryFile
 
-TRIGGER = 'mma'
+TRIGGER = 'mma '
 
 op = os.environ.get('ALBERT_OP')
 
