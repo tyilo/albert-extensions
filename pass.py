@@ -27,9 +27,10 @@ elif op == 'QUERY':
     query = query.strip()
 
     names = []
-    for p in sorted(Path.home().glob('.password-store/*.gpg')):
-        name = p.name[:-len('.gpg')]
-        if name.find(query) != -1:
+    for p in sorted(Path.home().glob('.password-store/**/*.gpg')):
+        full_relative_name = p.relative_to(os.path.join(Path.home()), '.password-store')
+        name, ext = os.path.splitext(full_relative_name)
+        if name.lower().find(query.lower()) != -1:
             names.append(name)
 
     items = []
