@@ -32,14 +32,14 @@ elif op == 'QUERY':
         if name.find(query) != -1:
             names.append(name)
 
-    copy_action = {
-        'name': 'Copy to clipboard',
-        'command': 'pass',
-        'arguments': ['show', '-c', name]
-    }
-
     items = []
     for name in names:
+        copy_action = {
+            'name': 'Copy to clipboard',
+            'command': 'pass',
+            'arguments': ['show', '-c', name]
+        }
+
         items.append({
             'id': 'result',
             'name': name,
