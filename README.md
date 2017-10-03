@@ -5,8 +5,10 @@ Extensions for use with [Albert](https://albertlauncher.github.io/)
 Installation
 ==
 
+You need atleast version 0.13 of albert
+
 ```
-git clone https://github.com/Tyilo/albert-extensions ~/.local/share/albert/external
+git clone https://github.com/Tyilo/albert-extensions ~/.local/share/albert/org.albert.extension.externalextensions/extensions
 ```
 
 and then enable "External extensions" in Albert's settings.

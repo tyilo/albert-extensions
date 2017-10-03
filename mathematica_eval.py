@@ -11,7 +11,7 @@ op = os.environ.get('ALBERT_OP')
 
 if op == 'METADATA':
     print(json.dumps({
-      'iid': 'org.albert.extension.external/v2.0',
+      'iid': 'org.albert.extension.external/v3.0',
       'version': '1.0',
       'name': 'Mathematica eval',
       'trigger': TRIGGER,
