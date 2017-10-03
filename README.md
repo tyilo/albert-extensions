@@ -41,3 +41,9 @@ Pass
 --
 
 Type `pass <name>` to list [pass](https://www.passwordstore.org/) passwords. Press enter to copy the password to the clipboard.
+
+
+TeX to unicode
+--
+
+Type `tex <tex math symbol>` to get a copyable unicode symbol corresponding to the tex math symbol if available.
