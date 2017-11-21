@@ -11,7 +11,7 @@ __trigger__ = 'mma '
 __author__ = 'Asger Hautop Drewsen'
 __dependencies__ = ['mathematica']
 
-ICON_PATH = '/usr/share/icons/hicolor/128x128/apps/wolfram-mathematica.png'
+ICON_PATH = iconLookup('wolfram-mathematica')
 
 def handleQuery(query):
     if not query.isTriggered:
