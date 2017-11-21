@@ -1,58 +1,40 @@
-#!/usr/bin/env python3
-import os
-import json
-import shlex
+'''Evaulate Mathematica expressions'''
+
+from albertv0 import *
 import subprocess
 from tempfile import NamedTemporaryFile
 
-TRIGGER = 'mma '
+__iid__ = 'PythonInterface/v0.1'
+__prettyname__ = 'Mathematica eval'
+__version__ = '1.0'
+__trigger__ = 'mma '
+__author__ = 'Asger Hautop Drewsen'
+__dependencies__ = ['mathematica']
 
-op = os.environ.get('ALBERT_OP')
+ICON_PATH = '/usr/share/icons/hicolor/128x128/apps/wolfram-mathematica.png'
 
-if op == 'METADATA':
-    print(json.dumps({
-      'iid': 'org.albert.extension.external/v3.0',
-      'version': '1.0',
-      'name': 'Mathematica eval',
-      'trigger': TRIGGER,
-      'author': 'Asger Hautop Drewsen',
-      'dependencies': [],
-    }))
-elif op == 'QUERY':
-    query = os.environ.get('ALBERT_QUERY')
-    if query.startswith(TRIGGER):
-        query = query[len(TRIGGER):]
+def handleQuery(query):
+    if not query.isTriggered:
+        return
 
-    query = query.strip()
+    item = Item(completion=query.rawString, icon=ICON_PATH)
+    stripped = query.string.strip()
 
-    if query:
+    if stripped:
         with NamedTemporaryFile() as f:
-            f.write(bytes(query, 'utf-8'))
+            f.write(bytes(stripped, 'utf-8'))
             f.flush()
             output = subprocess.check_output(['wolframscript', '-print', '-f', f.name])
         result = str(output.strip(), 'utf-8')
+        item.text = result
+        item.subtext = 'Result'
         success = True
-        description = 'Result'
     else:
-        result = ''
-        description = 'Type a mathematica expression'
+        item.text = ''
+        item.subtext = 'Type a Mathematica expression'
         success = False
 
-    item = {
-        'id': 'result',
-        'name': result,
-        'description': description,
-        'icon': 'wolfram-mathematica.png',
-        'actions': []
-    }
-
-    copy_action = {
-        'name': 'Copy to clipboard',
-        'command': 'sh',
-        'arguments': ['-c', 'echo -n %s | xclip -i -selection clipboard' % shlex.quote(result)]
-    }
-
     if success:
-        item['actions'].append(copy_action)
+        item.addAction(ClipAction('Copy result to clipboard', result))
 
-    print(json.dumps({'items': [item]}))
+    return [item]
